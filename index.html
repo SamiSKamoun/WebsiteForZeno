@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Hover with YouTube Redirect</title>
+  <style>
+    /* Dark background for the entire page */
+    body {
+      background-color: #333; /* Dark gray background */
+      color: white; /* White text color for better contrast */
+      margin: 0; /* Remove default margin */
+      font-family: Arial, sans-serif; /* Set font family */
+      height: 100vh; /* Full viewport height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Style for the Oui Button (Bottom-Left) */
+    .Oui-button {
+      background-color: rgb(10, 114, 10);
+      color: white;
+      border: none;
+      height: 80px; /* Larger height */
+      width: 200px; /* Larger width */
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 30px; /* Larger font size */
+      position: fixed;
+      bottom: 20px; /* 20px from the bottom of the screen */
+      left: 20px; /* 20px from the left side */
+      transition: background-color 0.3s ease, text-shadow 0.3s ease; /* Added text-shadow transition */
+    }
+
+    /* Static glowing text effect on hover */
+    .Oui-button:hover {
+      background-color: rgb(20, 144, 20); /* Brighter shade when hovered */
+      text-shadow: 0 0 15px rgba(20, 144, 20, 0.7), 0 0 30px rgba(20, 144, 20, 0.7), 0 0 45px rgba(20, 144, 20, 0.7); /* Glowing effect */
+    }
+
+    /* Style for the Non Button (Bottom-Right) */
+    .Non-button {
+      background-color: rgb(128, 128, 181);
+      border-color: rgb(85, 17, 5);
+      border-style: solid;
+      border-width: 4px;
+      border-radius: 5px;
+      cursor: pointer;
+      height: 80px; /* Larger height */
+      width: 200px; /* Larger width */
+      font-size: 30px; /* Larger font size */
+      position: fixed;
+      bottom: 20px; /* 20px from the bottom of the screen */
+      right: 20px; /* 20px from the right side */
+      transition: background-color 0.3s ease;
+    }
+
+    .Non-button:hover {
+      background-color: rgb(98, 98, 141); /* Darker shade when hovered */
+    }
+
+    /* Style for the PeutEtre Button (Lower in the screen) */
+    .PeutEtre-button {
+      background-color: rgb(220, 77, 77);
+      color: white;
+      border: none;
+      height: 80px; /* Larger height */
+      width: 200px; /* Larger width */
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 30px; /* Larger font size */
+      position: fixed;
+      bottom: 20px; /* Lower the button 120px from the bottom of the screen */
+      left: 50%; /* Center horizontally */
+      transform: translateX(-50%); /* Align the button exactly in the center */
+      transition: background-color 0.3s ease;
+    }
+
+    .PeutEtre-button:hover {
+      background-color: rgb(200, 50, 50); /* Darker red on hover */
+    }
+
+    /* Style for the Hello text */
+    p {
+      font-size: 60px; /* Increased font size */
+      color: white;
+      text-align: center;
+      position: fixed;
+      top: 10px; /* Positioned 10px from the top */
+      visibility: visible; /* Initially visible */
+      transition: top 0.5s ease; /* Smooth transition when moving */
+      width: 100%; /* Ensure it takes full width */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Message displayed at the top of the page -->
+<p id="message">Zeno, tu sort avec moi, stppppp</p>
+
+<!-- Oui Button that redirects to YouTube video on click -->
+<button class="Oui-button" onclick="openVideoAndMoveMessage('oui')">
+  Ouiiiiiiii, Je taime
+</button>
+
+<!-- Non Button positioned at the bottom-right -->
+<button class="Non-button" onclick="openVideoAndMoveMessage('non')">
+  Non
+</button>
+
+<!-- PeutEtre Button positioned lower -->
+<button class="PeutEtre-button" onclick="openVideoAndMoveMessage('peutetre')">
+  Peuut etreee
+</button>
+
+<script>
+  // Function to open video and move message when any button is clicked
+  function openVideoAndMoveMessage(buttonType) {
+    const message = document.getElementById("message");
+    let videoURL = '';
+    let displayMessage = '';
+
+    // Based on the button clicked, change the message and video URL
+    if (buttonType === 'oui') {
+      videoURL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Example YouTube link for "Oui"
+      displayMessage = 'ouiiiiiiiii, trop content 😍'; // Added emoji here
+    } else if (buttonType === 'non') {
+      videoURL = 'https://www.youtube.com/watch?v=PXyozpWtkGo&ab_channel=YadroGreenScreen'; // Example YouTube link for "Non"
+      displayMessage = 'heiinn??? whyyyy 😢'; // Added emoji here
+    } else if (buttonType === 'peutetre') {
+      videoURL = 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ'; // Example YouTube link for "PeutEtre"
+      displayMessage = 'Allllrighhht 🤔'; // Added emoji here
+    }
+
+    // Change the message text to the appropriate message
+    message.innerText = displayMessage;
+
+    // Move the message slightly lower after clicking the button
+    setTimeout(function() {
+      message.style.top = "20%"; // Moves the text lower to about the center vertically
+    }, 200); // Small delay for smooth transition
+
+    // Open the YouTube video in a new window
+    window.open(videoURL, '_blank');
+  }
+</script>
+
+</body>
+</html>
